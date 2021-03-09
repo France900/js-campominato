@@ -9,47 +9,37 @@
 
 var bombe = [] // 16 numeri casuali fra 1 e 100 non ripetuti
 var safenumbers = [] // 84 numeri utente fra 1 e 100 non ripetuti non contenenti bombe
+var maxNumber = 100
 
 // genero sedici numeri fra 1 e 100
 while (bombe.length < 16) {
-  var sorted = dice(1,100)
+  var sorted = dice(1, maxNumber)
   if (!(bombe.includes(sorted))) {
     bombe.push(sorted)
   }
 }
 bombe.sort()
 console.log(bombe);
+// finito
 
-
-safenumbers.sort()
-console.log(safenumbers);
+// chiedere 84 numeri all'utente
 while (safenumbers.length < 84) {
   var inseriti = parseInt(prompt("inserisci un numero da 1 a 100"));
-  if (!safenumbers.includes(inseriti)) {
-    if (bombe.includes(inseriti)) {
-      console.log("you died!");
-      break;
-    } else {
-      safenumbers.push(inseriti)
-    }
+  safenumbers.sort()
+  console.log(safenumbers);
+  // caso bomba
+  if (bombe.includes(inseriti)) {
+    console.log("you died!");
+    break;
+  // numero doppio // push
+  } else if (!(safenumbers.includes(inseriti))) {
+    safenumbers.push(inseriti)
   }
 }
+console.log("hai fatto " + safenumbers.length + " punti");
+//evitare che si ripetano
 
-
-
-
-// while (safenumbers.length < 84) {
-//   var inseriti = parseInt(prompt("inserisci un numero da 1 a 100"));
-//   if (bombe.includes(inseriti)) {
-//     console.log("you died!");
-//   } else if (!(safenumbers.includes(inseriti))) {
-//     safenumbers.push(inseriti)
-//   }
-// }
-// safenumbers.sort()
-// console.log(safenumbers);
-
-
+// se bomba esplode
 
 
 
